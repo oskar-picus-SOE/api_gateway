@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
-        return userService.findUser(user)
+        return userService.findUser(user.username())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

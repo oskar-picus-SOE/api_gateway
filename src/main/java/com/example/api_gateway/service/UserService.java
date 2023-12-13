@@ -19,10 +19,10 @@ public class UserService {
         this.loadBalancedWebClientBuilder = loadBalancedWebClientBuilder;
     }
 
-    public Optional<User> findUser(User user) {
+    public Optional<User> findUser(String username) {
         ResponseEntity<User> response = loadBalancedWebClientBuilder.build()
                 .get()
-                .uri(userServiceUrl, uri -> uri.queryParam("username", user.username()).build())
+                .uri(userServiceUrl, uri -> uri.queryParam("username", username).build())
                 .retrieve()
                 .toEntity(User.class)
                 .block();

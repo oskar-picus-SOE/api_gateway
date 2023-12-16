@@ -1,10 +1,12 @@
 package com.example.api_gateway.controller;
 
 import com.example.api_gateway.entity.Post;
+import com.example.api_gateway.entity.PostsList;
 import com.example.api_gateway.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +27,10 @@ public class PostController {
     public ResponseEntity<Void> addPost(@RequestBody Post post) {
         postService.addPost(post);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/posts")
+    public ResponseEntity<PostsList> getAllPosts() {
+        return ResponseEntity.ok(postService.getAll());
     }
 }

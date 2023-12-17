@@ -17,4 +17,4 @@ RUN mkdir /app
 
 COPY --from=build /buildApp/target/*.jar /app/api_gateway.jar
 
-ENTRYPOINT ["java", "-jar", "app/api_gateway.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app/api_gateway.jar"]
